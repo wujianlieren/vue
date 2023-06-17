@@ -17,7 +17,8 @@
 		    <router-view></router-view>
 		  </div>
 		<script>
-			const Home = { template: '<div><h2>Home</h2><p>home</p></div>' };
+			    // 创建路由组件
+			    const Home = { template: '<div><h2>Home</h2><p>home</p></div>' };
 			    const About = { template: '<div><h2>About</h2><p>about</p></div>' };
 			    const Contact = { template: '<div><h2>Contact</h2><p>contact</p></div>' };
 			
