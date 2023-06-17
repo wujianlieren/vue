@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>filter</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id='routing'>
+			<p>
+				<router-link to='/route1'>router link 1</router-link>
+				<router-link to='/route2'>router link 2</router-link>
+			</p>
+			<router-view></router-view>
+		</div>
+		<script>
+			const route1={template:"<div style='color:red'>router 1</div>"};
+			const route2={template:"<div style='color:red'>router 2</div>"};
+			const routes=[
+				{path:'/route1',component:route1},
+				{path:'/route2',component:route2}
+			];
+			const router=new VueRouter({
+				routes
+			});
+			var vm=new Vue({
+				el:'#routing',
+				router
+			})
+		</script>
+			
+			
+			
+	</body>
+</html>
