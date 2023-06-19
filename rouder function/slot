@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>slot</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id="databinding">
+			<my-component>qz</my-component>
+			<my-component>xm</my-component>
+		</div>
 
+		<script>
+			var vm = new Vue({
+				el: '#databinding',
+				components: {
+					'my-component': {
+						template: '<h1><slot></slot></h1>'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
