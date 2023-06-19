@@ -2,38 +2,38 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>props property</title>
+		<title>render function</title>
 		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
 		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
 	</head>
 	<body>
 		<div id="component_test">
-			<testcomponent :elementtypes="'div,red,25,div1'">hello jason</testcomponent>
-			<testcomponent :elementtypes="'h3,green,25,h3tag'">hello jason</testcomponent>
+			<testcomponent v-bind:elementtype="'div,red,25,div1'">hello jason</testcomponent>
+			<testcomponent :elementtype="'h3,green,25,h3tag'">hello jason</testcomponent>
 		</div>
 
 		<script>
-			Vue.component('testcomponent',{
-				render:function(createElement){
-					var a=this.elementtypes.split(',');
-					return createElement(a[0],{
-						attrs:{
-							id:a[3],
-							style:"color:"+a[1]+";font-size:"+a[2]+";"
-						}
-					},
-					this.$slots.default
-					)					
-				},
-				props:{
-					elementtypes:{
-						attributes:String,
-						required:true
+			Vue.component('testcomponent', {
+				props: {
+					elementtype: {
+						attributes: String						
 					}
-				}
+				},
+				render: function(createElement) {
+					var a = this.elementtype.split(',');
+					return createElement(a[0], {
+							attrs: {
+								id: a[3],
+								style: "color:" + a[1] + ";font-size:" + a[2] + ";"
+							}
+						},
+						this.$slots.default
+					)
+				},
+				
 			});
-			var vm=new Vue({
-				el:'#component_test'
+			var vm = new Vue({
+				el: '#component_test'
 			})
 		</script>
 	</body>
