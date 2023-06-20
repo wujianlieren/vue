@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue.set</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id="app">
+			<button @click = 'counter++' >click me</button>
+		</div>
+
+		<script>
+			var product={name:'book','id':1,'price':10}
+			var vm=new Vue({
+				el:'#app',
+				data:{
+					counter:1.,
+					product:product
+				}
+			});
+			vm.product.color='red';
+			Vue.set(product,'quality','excellent')
+			console.log(vm);			
+		</script>
+	</body>
+</html>
