@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-once</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 单个元素 -->
+			<span v-once>这个内容不会再改变: {{msg}}</span>
+			<hr />
+			<span>这个内容会change: {{msg}}</span>
+			<!-- 有子元素 -->
+			<div v-once>
+				<p>{{msg}}</p>
+			</div>
+			<!-- `v-for` 指令-->
+			<ul>
+				<li v-for="i in list" v-once>{{i}}</li>
+			</ul>
+			<hr>
+			<ul>
+				<li v-for="i in list">{{i}}</li>
+			</ul>
+		</div>
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					msg: "hello world",
+					list: [1, 2, 3]
+				}
+			});
+			setTimeout(() => {
+				vm.msg = "hi jason";
+				vm.list.pop();
+				console.log(vm.msg, vm.list);
+			}, 1000)
+		</script>
+	</body>
+</html>
