@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>component</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<h1 style='font-size:120px'>赛龙舟</h1>
+		<div id='app'>
+			<button-counter></button-counter>
+			<button-counter>new</button-counter>
+		</div> 		
+		<script>
+			Vue.component('button-counter',{
+				data(){
+					return {
+						count:0
+					}
+				},			
+				template:'<button v-on:click="count++">{{count}}</button>'});
+			var vm=new Vue({
+				el:'#app',				
+				// components:{
+				// 	'button-counter':{
+				// 		data(){
+				// 			return{
+				// 				count:0
+				// 			}
+				// 		},
+				// 		template:'<button v-on:click="count++">{{count}}</button>'
+				// 	}
+				// }
+			})
+		</script>
+	</body>
+</html>
