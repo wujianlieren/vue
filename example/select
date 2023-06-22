@@ -13,9 +13,9 @@
 				<option v-for ='(a,index) in currencyfrom' v-bind:value='a.name'>{{a.desc}}</option>	
 			</select>
 			<select v-model='convertto' >
-				<option v-for='(a,index)in currencyfrom' v-bind:value='a.name'>{{a.desc}}</option>
+				<option v-for='(a,index) in currencyfrom' v-bind:value='a.name'>{{a.desc}}</option>
 			</select><br/>
-			<span>{{amount}}{{convertfrom}}equals{{finalamount}}{{convertto}}</span>
+			<span>{{finalamount}}</span>
 		</div>
 
 		<script>			
