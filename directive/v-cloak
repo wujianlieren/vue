@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>v-cloak</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<style type='text/css'>
+			[v-cloak]{
+				display:none;
+			}
+		</style>
+		<div id='app'>
+			<div v-cloak>{{msg}}</div><hr> 
+			<div>{{msg}}</div>
+		</div> 
+		<script>
+			var vm;
+			setTimeout(()=>{
+				var vm=new Vue({
+					el:'#app',
+					data:{
+						msg:'hi jason'   
+					}
+				})
+			},300)
+		</script>
+	</body>
+</html>
