@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>todolist</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+		<link rel='stylesheet' type='text/css' href='todolist.css'>
+	</head>
+	<body>
+		<div id='app'>
+			<input type='text' v-model='title'><button v-on:click='addItem'  >添加</button>
+			<table border='1' cellspacing="0">
+				<tr>
+					<td><input type='checkbox' v-bind:checked='isall' v-on:click='selectAll'>select all</td>
+					<td>title</td>
+					<td>manage</td>
+				</tr>
+				<tr v-for='(item,index) in listData' >
+					<td><input type='checkbox' v-bind:checked='item.checked' v-on:click='selectItem(index)'></td>
+					<td>{{item.title}}</td>
+					<td><span v-on:click='delItem(index)'>delete</span></td>
+				</tr>
+				<tr>
+					<td colspan='3'><button v-on:click='deleteAll'>delete all</button><button type="button" v-on:click='submitData'>submit</button></td>
+				</tr>
+			</table>
+			提交后的数据：{{lastData.length>0?lastData:''}}
+		</div>
+		
+		
+		<script>
+			var vm = new Vue({
+				el: '#app',
+				data: {
+					title: '',
+					listData: [],
+					lastData:[],
+					isall:false
+				},
+				methods: {
+					//add itemdata
+					addItem() {
+						if (this.title == '') {
+							alert('please input');
+							return;
+						}
+						this.listData.push({
+							title: this.title,
+							checked: false
+						})
+					},
+					delItem(index){
+					    this.listData.splice(index,1);	
+						this.isAllSelected();
+					},
+					//select itemdata
+					selectItem(index){
+						
+						this.listData[index].checked=!this.listData[index].checked;
+						this.$set(this.listData,index,this.listData[index]);
+						this.isAllSelected()
+					},
+					//is all selected?
+					isAllSelected() {
+					  let isall = false; // 将初始值设为 false
+					  if (this.listData.length > 0) {
+					    isall = true; // 假设所有项都被选中
+					    for (let i = 0; i < this.listData.length; i++) {
+					      if (!this.listData[i].checked) {
+					        isall = false; // 只要有一项未被选中，则将 isall 设为 false
+					        break;
+					      }
+					    }
+					  }
+					  this.isall = isall;
+					},
+					//select all
+					selectAll(){
+						this.isall=!this.isall
+						for(let i=0;i<this.listData.length;i++){
+							this.listData[i].checked=this.isall;
+						}
+					},
+					//delete the selected
+					deleteAll(){
+						if(this.listData.length>0){
+							for(let i=0;i<this.listData.length;i++){
+								if(this.listData[i].checked){
+									this.listData.splice(i--,1);									
+								}
+							}
+						};
+						this.isAllSelected();
+					},
+					//submit data
+					submitData(){
+						let data=[];
+						if(this.listData.length>0){
+							for(let i=0;i<this.listData.length;i++){
+								if(this.listData[i].checked){
+									data.push(this.listData[i])
+								}
+							}
+						}
+						this.lastData=data;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
