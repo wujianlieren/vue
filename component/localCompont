@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>局部component</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>	
+		<div id="app" ></div>
+		<script>
+			Vue.component('PublicComponent',{
+				template:'<div>publicComponent</div>'
+			});
+			let AComponent={				
+				template:`<div>
+							<PublicComponent></PublicComponent>
+							<div>acomponent</div>
+						  </div>`
+			};
+			let BComponent={				
+				template:`
+					<div>
+						<AComponent></AComponent>
+						<div>bcomponent</div>
+					</div>
+				`,
+				components:{
+					AComponent
+				}
+				};
+			var vm = new Vue({
+				el: '#app',				
+				components:{
+					BComponent
+				},
+				template:'<BComponent></BComponent>'
+			})
+		</script>
+	</body>
+</html>
