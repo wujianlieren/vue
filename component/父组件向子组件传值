@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>父组件向子组件传值</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id='app'></div>
+		<ChildrenComponent></ChildrenComponent>
+		<script>
+			let ChildrenComponent={
+				data(){
+					return{
+						newTitle:this.title
+					}
+				},
+				props:{
+					title:{
+						type:String						
+					}
+				},
+				template:`
+					<div>
+						{{newTitle}}<button @click='newTitle="jun"'>change</button>
+					</div>	
+				`				
+			};
+			let ParentComponent={
+				data(){
+					return{
+						name:'jason'
+					}
+				},
+				components:{
+					ChildrenComponent
+				},
+				template:`<ChildrenComponent :title='name'></ChildrenComponent>`
+			};
+			new Vue({
+				el:'#app',
+				components:{					
+					ParentComponent
+				},
+				template:`<ParentComponent></ParentComponent>`
+			})			
+		</script>
+	</body>
+</html>
