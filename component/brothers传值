@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>brothers传值</title>
+		<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+		<script src='https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js'></script>
+	</head>
+	<body>
+		<div id='app'></div>
+		<ChildrenComponent></ChildrenComponent>
+		<script>
+			let us=new Vue
+			let AComponent={				
+				template:`
+					<button @click='handleClick'>handleClick</button>						
+				`,
+				methods:{
+					handleClick(){
+						us.$emit('handleClick','jason')
+					}
+				}
+			};
+			let BComponent={
+				data(){
+					return{
+						val1:'',
+						val2:''
+					}
+				},
+				template:'<div></div>',
+				created(){
+					us.$on('handleClick',(val)=>{
+						console.log(val)
+					})
+				}
+				
+			};
+			new Vue({
+				el:'#app',
+				components:{					
+					AComponent,
+					BComponent
+				},
+				template:`<div>
+					<AComponent></AComponent>
+					<BComponent></BComponent>
+					</div>
+				`
+			})			
+		</script>
+	</body>
+</html>
